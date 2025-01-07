@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة ساعد زبير</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .results p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .results p:first-child {
+            color: #4CAF50;
+        }
+
+        .results p:last-child {
+            color: #FF5722;
+        }
+    </style>
+    <script>
+        function calculate() {
+            // Get input values
+            let x = parseFloat(document.getElementById("x").value);
+            let y = parseFloat(document.getElementById("y").value);
+            let a = parseFloat(document.getElementById("a").value);
+
+            // Calculate area
+            if (!isNaN(x) && !isNaN(y)) {
+                let area = x * y;
+                document.getElementById("areaResult").innerText = "Area: " + area.toFixed(2) + " m²";
+
+                // Calculate price if 'a' is provided
+                if (!isNaN(a)) {
+                    let totalPrice = area * a;
+                    document.getElementById("priceResult").innerText = "Total Price: " + totalPrice.toFixed(2) + " DA";
+                } else {
+                    document.getElementById("priceResult").innerText = "";
+                }
+            } else {
+                document.getElementById("areaResult").innerText = "";
+                document.getElementById("priceResult").innerText = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>حاسبة ساعد زبير</h1>
+        <form oninput="calculate()">
+            <div class="form-group">
+                <label for="x">الطول (m):</label>
+                <input type="number" id="x" name="x" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="y">العرض (m):</label>
+                <input type="number" id="y" name="y" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="a">السومة للمتر تع الاحباب:</label>
+                <input type="number" id="a" name="a" step="any">
+            </div>
+        </form>
+        <div class="results">
+            <p id="areaResult"></p>
+            <p id="priceResult"></p>
+        </div>
+    </div>
+</body>
+</html>
